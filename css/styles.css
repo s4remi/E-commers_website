@@ -37,6 +37,11 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-thumb {
   background: var(--black);
 }
+
+section {
+  padding: 5rem 9%;
+}
+
 .btn {
   margin-top: 1rem;
   display: inline-block;
@@ -207,7 +212,7 @@ header .header-1 .icons a:hover {
   gap: 0.5rem;
   padding: 1rem 0;
 }
-/* double check */
+
 .login-form-container form .checkbox label {
   font-size: 1.5rem;
   color: var(--light-color);
@@ -239,6 +244,51 @@ header .header-1 .icons a:hover {
   cursor: pointer;
 }
 
+.home {
+  background: url(../images/banner-bg.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home .row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.home .row .content {
+  flex: 1 1 42rem;
+}
+
+.home .row .book-slider {
+  flex: 1 1 42rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.home .row .book-slider a img {
+  height: 25rem;
+}
+.home .row .book-slider a:hover img {
+  transform: scale(0.9);
+}
+.home .row .book-slider .stand {
+  width: 100%;
+  margin-top: -2rem;
+}
+.home .row .content h3 {
+  color: var(--black);
+  font-size: 4.5rem;
+}
+
+.home .row .content p {
+  color: var(--light-color);
+  font-size: 1.5rem;
+  line-height: 2;
+  padding: 1rem 0;
+}
+
 /* media queries */
 @media (max-width: 991px) {
   html {
@@ -246,6 +296,9 @@ header .header-1 .icons a:hover {
   }
   .header .header-1 {
     padding: 2rem;
+  }
+  section {
+    padding: 3rem 2rem;
   }
 }
 
@@ -279,6 +332,12 @@ header .header-1 .icons a:hover {
 
   .header .header-1 .search-form.active {
     top: 115%;
+  }
+  .home .row .content {
+    text-align: center;
+  }
+  .home .row .content h3 {
+    font-size: 3.4rem;
   }
 }
 @media (max-width: 450px) {
