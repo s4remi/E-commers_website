@@ -165,7 +165,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(255, 255, 255, 9);
+  background: rgb(255, 255, 255, 0.9);
   position: fixed;
   top: 0;
   right: -105%;
@@ -248,7 +248,7 @@ body {
 }
 
 .home {
-  background: url(../images/banner-bg.jpg) no-repeat;
+  background: url(../images/Blume.png) no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -264,19 +264,19 @@ body {
   flex: 1 1 42rem;
 }
 
-.home .row .book-slider {
+.home .row .books-slider {
   flex: 1 1 42rem;
   text-align: center;
   margin-top: 2rem;
 }
 
-.home .row .book-slider a img {
+.home .row .books-slider a img {
   height: 25rem;
 }
-.home .row .book-slider a:hover img {
-  transform: scale(0.9);
+.home .row .books-slider a:hover img {
+  transform: scale(0.7);
 }
-.home .row .book-slider .stand {
+.home .row .books-slider .stand {
   width: 100%;
   margin-top: -2rem;
 }
@@ -287,7 +287,7 @@ body {
 
 .home .row .content p {
   color: var(--light-color);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 2;
   padding: 1rem 0;
 }
