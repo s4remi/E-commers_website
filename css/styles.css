@@ -2,11 +2,11 @@
 :root {
   --green: #27ae60;
   --dark-color: #219150;
-  --blak: #444;
+  --black: #444;
   --light-color: #666;
   --border: 0.1rem solid rgba(0, 0, 0, 0.1);
-  --border-hover: 0.1rem solid var(var(--black));
-  --border-shadow: 0 0.5rem 1 rem rgba(0, 0, 0, 0.1);
+  --border-hover: 0.1rem solid var(--black);
+  --box-shadow: 0 0.5rem 1 rem rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -63,12 +63,12 @@ section {
   align-items: center;
   justify-content: space-between;
 }
-.header .header-1 .log {
+.header .header-1 .logo {
   font-size: 2.5rem;
   font-weight: bolder;
   color: var(--black);
 }
-.header .header-1 .log i {
+.header .header-1 .logo i {
   color: var(--green);
 }
 
@@ -83,7 +83,7 @@ section {
   border-radius: 0.5rem;
 }
 
-header .header-1 .search-form input {
+.header .header-1 .search-form input {
   font-size: 1.6rem;
   padding: 0 1.2rem;
   height: 100%;
@@ -91,24 +91,24 @@ header .header-1 .search-form input {
   text-transform: none;
   color: var(--black);
 }
-header .header-1 .search-form label {
+.header .header-1 .search-form label {
   font-size: 2.5rem;
   padding-right: 1.5rem;
   color: var(--black);
   cursor: pointer;
 }
-header .header-1 .search-form label:hover {
+.header .header-1 .search-form label:hover {
   color: var(--green);
 }
-header .header-1 .icons div,
-header .header-1 .icons a {
+.header .header-1 .icons div,
+.header .header-1 .icons a {
   font-size: 2.5rem;
   margin-left: 1.5rem;
   color: var(--black);
   cursor: pointer;
 }
-header .header-1 .icons div:hover,
-header .header-1 .icons a:hover {
+.header .header-1 .icons div:hover,
+.header .header-1 .icons a:hover {
   color: var(--green);
 }
 #search-btn {
@@ -139,6 +139,9 @@ header .header-1 .icons a:hover {
   right: 0;
   z-index: 1000;
 }
+body {
+  height: 300rem;
+}
 .bottom-navbar {
   text-align: center;
   background: var(--green);
@@ -147,6 +150,7 @@ header .header-1 .icons a:hover {
   left: 0;
   right: 0;
   z-index: 1000;
+  display: none;
 }
 .bottom-navbar a {
   font-size: 2.5rem;
@@ -184,13 +188,12 @@ header .header-1 .icons a:hover {
 }
 
 .login-form-container form h3 {
-  padding-bottom: 2.5rem;
+  font-size: 2.5rem;
   text-transform: uppercase;
   color: var(--black);
   text-align: center;
 }
 .login-form-container form span {
-  font-weight: bold !important ;
   display: block;
   font-size: 1.5rem;
   padding-top: 1rem;
@@ -245,7 +248,7 @@ header .header-1 .icons a:hover {
 }
 
 .home {
-  background: url(../images/banner-bg.png) no-repeat;
+  background: url(../images/banner-bg.jpg) no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -315,6 +318,10 @@ header .header-1 .icons a:hover {
   .bottom-navbar {
     display: block;
   }
+  #search-btn {
+    display: inline-block;
+  }
+
   #search-btn {
     display: inline-block;
   }
