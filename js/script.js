@@ -33,7 +33,7 @@ window.onload = () => {
 };
 
 //home swiper function
-var swiper = new Swiper(".books-slider", {
+var books_slider_swiper = new Swiper(".books-slider", {
   loop: true,
   centeredSlides: true,
   autoplay: {
@@ -57,7 +57,7 @@ var swiper = new Swiper(".books-slider", {
   },
 });
 
-var swiper = new Swiper(".featured-slider", {
+var feature_swiper = new Swiper(".featured-slider", {
   spaceBetween: 10,
   loop: true,
   centeredSlides: true,
