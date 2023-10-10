@@ -11,7 +11,7 @@ const MyDB = () => {
     return { client, db };
   };
 
-  myDB.getUser = async ({query = {}}) => {
+  myDB.getUser = async ( query = {} ) => {
     const { client, db } = connect();
     const userCollection = db.collection("users");
     try {
@@ -19,7 +19,16 @@ const MyDB = () => {
     } catch (e) {
       await client.close();
     }
+  };
 
+  myDB.createUser = async ( doc  = {}) => {
+    const { client, db } = connect();
+    const userCollection = db.collection("users");
+    try {
+      return userCollection.insertOne(doc);
+    } catch (e) {
+      await client.close();
+    }
   };
 
   return myDB;
