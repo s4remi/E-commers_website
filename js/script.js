@@ -33,16 +33,12 @@ window.onload = () => {
 };
 
 //home swiper function
-var books_slider_swiper = new Swiper(".books-slider", {
+var swiper = new Swiper(".books-slider", {
   loop: true,
   centeredSlides: true,
   autoplay: {
     delay: 9500,
     disableOnInteraction: false,
-  },
-  navigation: {
-    nextEl: "#.swiper-button-next",
-    prevEl: ".swiper-button-prev",
   },
   breakpoints: {
     0: {
@@ -57,13 +53,17 @@ var books_slider_swiper = new Swiper(".books-slider", {
   },
 });
 
-var feature_swiper = new Swiper(".featured-slider", {
+var swiper = new Swiper(".featured-slider", {
   spaceBetween: 10,
   loop: true,
   centeredSlides: true,
   autoplay: {
     delay: 9500,
     disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
   breakpoints: {
     0: {
