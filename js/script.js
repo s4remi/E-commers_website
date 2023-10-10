@@ -1,28 +1,36 @@
-searchForm = document.querySelector(".search-form");
+const searchForm = document.querySelector(".search-form");
 document.querySelector("#search-btn").onclick = () => {
   searchForm.classList.toggle("active");
 };
 
-const isValidEmail = (email) => {
-  // Implement your email validation logic here (regex, etc.)
-  // For example, a basic regex pattern for email validation:
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
-const signUpError = document.getElementById("#sign-up-error");
-const displaySignUpError = (message) => {
-  signUpError.textContent = message;
-  signUpError.style.display = "block";
-};
 
-function clearSignUpErrorMessages() {
-  signUpError.textContent = "";
-  signUpError.style.display = "none";
-}
 
 //login section
 const loginForm = document.querySelector(".login-form-container");
-
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+  try {
+    fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    }).then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      }).catch(error=>{
+        alert(error);
+      });
+  } catch (error) {
+    alert(error);
+  }
+});
 document.querySelector("#login-btn").onclick = () => {
   loginForm.classList.add("active");
 };
@@ -34,10 +42,8 @@ document.querySelector("#close-login-btn").onclick = () => {
 const signUpFrom = document.querySelector(".sign-up-form-container");
 
 document.querySelector("#sign-up-btn").onclick = () => {
-  console.log(loginForm.classList);
   loginForm.classList.remove("active");
   signUpFrom.classList.add("active");
-
 };
 
 document.querySelector("#close-sign-up-btn").onclick = () => {
@@ -49,37 +55,47 @@ document.querySelector("#sign-up-to-login-btn").onclick = () => {
   signUpFrom.classList.remove("active");
   loginForm.classList.add("active");
 };
+const confirmPasswordInput = document.getElementById(
+  "sign-up-confirm-password",
+);
+
+confirmPasswordInput.addEventListener("input", ()=>{
+  confirmPasswordInput.setCustomValidity("");
+});
 
 signUpFrom.addEventListener("submit", async (event) => {
   event.preventDefault();
   const email = document.getElementById("sign-up-email").value;
   const password = document.getElementById("sign-up-password").value;
-  const confirmPassword = document.getElementById("sign-up-confirm-password").value;
 
-  clearSignUpErrorMessages();
+  const confirmPassword = confirmPasswordInput.value;
 
-  if (!isValidEmail(email)) {
-    displaySignUpError("Invalid email format");
-    return;
-  }
-
-  if (password.length < 6) {
-    displaySignUpError("Password must be at least 6 characters long");
-    return;
-  }
 
   if (password !== confirmPassword) {
     // Handle password mismatch error
-    displaySignUpError("Passwords do not match. Please try again.");
+    console.log("goto here");
+    confirmPasswordInput.setCustomValidity("Passwords don't match");
+    confirmPasswordInput.reportValidity();
     return;
   }
 
   try {
-
+    fetch("http://localhost:3000/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    }).then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      });
   } catch (error) {
     console.log(error);
   }
-
 });
 
 window.onscroll = () => {
@@ -101,7 +117,7 @@ window.onload = () => {
 };
 
 //home swiper function
-var books_slider_swiper = new Swiper(".books-slider", {
+const books_slider_swiper = new Swiper(".books-slider", {
   loop: true,
   centeredSlides: true,
   autoplay: {
@@ -125,7 +141,7 @@ var books_slider_swiper = new Swiper(".books-slider", {
   },
 });
 
-var feature_swiper = new Swiper(".featured-slider", {
+const feature_swiper = new Swiper(".featured-slider", {
   spaceBetween: 10,
   loop: true,
   centeredSlides: true,

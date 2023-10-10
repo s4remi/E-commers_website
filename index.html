@@ -71,7 +71,8 @@
           name=""
           class="box"
           placeholder="enter your email"
-          id=""
+          id="login-email"
+          required
         />
         <span>password</span>
         <input
@@ -79,7 +80,8 @@
           name=""
           class="box"
           placeholder="enter your password"
-          id=""
+          id="login-password"
+          required
         />
         <div class="checkbox">
           <input type="checkbox" name="" id="remember-me" />
@@ -100,6 +102,7 @@
         <input
                 type="email"
                 name=""
+                required
                 class="box"
                 placeholder="enter your email"
                 id="sign-up-email"
@@ -108,6 +111,7 @@
         <input
                 type="password"
                 name=""
+                required minlength="6"
                 class="box"
                 placeholder="enter your password"
                 id="sign-up-password"
@@ -119,8 +123,8 @@
                 class="box"
                 placeholder="confirm your password"
                 id="sign-up-confirm-password"
+                data-equal-id="sign-up-password"
         />
-        <div class="error-message" id="sign-up-error"></div>
         <input type="submit" value="sign up" class="btn" />
         <p>Already have an account? <a id="sign-up-to-login-btn" href="#">Sign in</a></p>
       </form>

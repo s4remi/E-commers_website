@@ -5,9 +5,20 @@ import bcrypt from "bcrypt";
 import bodyParser from "body-parser";
 export const router = express.Router();
 
-router.get("/users/login", async (req, res) => {
-  const user = await myDB.getUser({});
-  res.json(user);
+router.post("/users/login", bodyParser.json(), async (req, res) => {
+  const { email, password } = req.body;
+  myDB.getUser({ email: email }).then((existingUser) => {
+    bcrypt.compare(password, existingUser.password, (err, result) => {
+      if (err) {
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (result) {
+        return res.status(200).json({ message: "Login successful" });
+      } else {
+        return res.status(401).json({ message: "Wrong email or password" });
+      }
+    });
+  });
 });
 
 router.post("/users/register", bodyParser.json(), async (req, res) => {
