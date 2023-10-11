@@ -8,4 +8,5 @@ app.use(cors());
 app.use(apiRouter);
 app.listen(PORT, () => {
   console.log("server started");
+  console.log("here!", PORT);
 });
