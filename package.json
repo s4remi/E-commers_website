@@ -1,10 +1,11 @@
 {
   "name": "e-commers_website",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a book ecommerce application.",
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node ./node_modules/nodemon/bin/nodemon.js index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ali s,Zhehao Xu",
@@ -12,14 +13,14 @@
   "devDependencies": {
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "nodemon": "^3.0.1"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "http-server": "^14.1.1",
     "mongodb": "^6.1.0"
   }
 }

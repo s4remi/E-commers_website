@@ -1,8 +1,7 @@
 import { MongoClient } from "mongodb";
 
 const MyDB = () => {
-  const uri =
-    "mongodb+srv://admin:admin@cluster0.duh9gcc.mongodb.net/?retryWrites=true&w=majority";
+  const uri = process.env.MONGO_url;
   const myDB = {};
 
   const connect = () => {
@@ -11,7 +10,7 @@ const MyDB = () => {
     return { client, db };
   };
 
-  myDB.getUser = async ( query = {} ) => {
+  myDB.getUser = async (query = {}) => {
     const { client, db } = connect();
     const userCollection = db.collection("users");
     try {
@@ -21,7 +20,7 @@ const MyDB = () => {
     }
   };
 
-  myDB.createUser = async ( doc  = {}) => {
+  myDB.createUser = async (doc = {}) => {
     const { client, db } = connect();
     const userCollection = db.collection("users");
     try {
