@@ -1,11 +1,36 @@
-searchForm = document.querySelector(".search-form");
+const searchForm = document.querySelector(".search-form");
 document.querySelector("#search-btn").onclick = () => {
   searchForm.classList.toggle("active");
 };
 
-//login section
-let loginForm = document.querySelector(".login-form-container");
 
+
+//login section
+const loginForm = document.querySelector(".login-form-container");
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+  try {
+    fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    }).then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      }).catch(error=>{
+        alert(error);
+      });
+  } catch (error) {
+    alert(error);
+  }
+});
 document.querySelector("#login-btn").onclick = () => {
   loginForm.classList.toggle("active");
 };
@@ -13,6 +38,65 @@ document.querySelector("#login-btn").onclick = () => {
 document.querySelector("#close-login-btn").onclick = () => {
   loginForm.classList.remove("active");
 };
+
+const signUpFrom = document.querySelector(".sign-up-form-container");
+
+document.querySelector("#sign-up-btn").onclick = () => {
+  loginForm.classList.remove("active");
+  signUpFrom.classList.add("active");
+};
+
+document.querySelector("#close-sign-up-btn").onclick = () => {
+  signUpFrom.classList.remove("active");
+  loginForm.classList.remove("active");
+};
+
+document.querySelector("#sign-up-to-login-btn").onclick = () => {
+  signUpFrom.classList.remove("active");
+  loginForm.classList.add("active");
+};
+const confirmPasswordInput = document.getElementById(
+  "sign-up-confirm-password",
+);
+
+confirmPasswordInput.addEventListener("input", ()=>{
+  confirmPasswordInput.setCustomValidity("");
+});
+
+signUpFrom.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const email = document.getElementById("sign-up-email").value;
+  const password = document.getElementById("sign-up-password").value;
+
+  const confirmPassword = confirmPasswordInput.value;
+
+
+  if (password !== confirmPassword) {
+    // Handle password mismatch error
+    console.log("goto here");
+    confirmPasswordInput.setCustomValidity("Passwords don't match");
+    confirmPasswordInput.reportValidity();
+    return;
+  }
+
+  try {
+    fetch("http://localhost:3000/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    }).then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 window.onscroll = () => {
   searchForm.classList.remove("active");

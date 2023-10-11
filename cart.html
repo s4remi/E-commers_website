@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cart</title>
+</head>
+<body>
+  <button onclick="showUser()"></button>
+  <div id="tett">test</div>
+  <script>
+    function showUser(){
+      const para = document.getElementById("tett");
+      para.innerHTML = myDB.getUser();
+    }
+  </script>
+  <script src="db/MyDB.js"></script>
+</body>
+</html>

@@ -1,48 +1,48 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ali&Zhehao</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ali&Zhehao</title>
 
-    <!-- font swiper bundle -->
+  <!-- font swiper bundle -->
 
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
-    />
+  <link
+          rel="stylesheet"
+          href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+  />
 
-    <!--  font awesome from cdn -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
+  <!--  font awesome from cdn -->
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
 
     <!--  css file links -->
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <!--   header section start -->
-    <header class="header">
-      <div class="header-1">
-        <a href="#" class="logo"><i class="fas fa-book"></i> Ali&Zhehao</a>
-        <form action="" class="search-form">
-          <!-- input:search#search-box -->
-          <input
-            type="search"
-            name=""
-            placeholder="search here..."
-            id="search-box"
-          />
-          <label for="search-box" class="fas fa-search"></label>
-        </form>
-        <div class="icons">
-          <div id="search-btn" class="fas fa-search"></div>
-          <a href="" class="fas fa-heart"></a>
-          <a href="" class="fas fa-shopping-cart"></a>
-          <div id="login-btn" class="fas fa-user"></div>
-        </div>
+  <!--   header section start -->
+  <header class="header">
+    <div class="header-1">
+      <a href="#" class="logo"><i class="fas fa-book"></i> Ali&Zhehao</a>
+      <form action="" class="search-form">
+        <!-- input:search#search-box -->
+        <input
+                type="search"
+                name=""
+                placeholder="search here..."
+                id="search-box"
+        />
+        <label for="search-box" class="fas fa-search"></label>
+      </form>
+      <div class="icons">
+        <div id="search-btn" class="fas fa-search"></div>
+        <a href="" class="fas fa-heart"></a>
+        <a href="" class="fas fa-shopping-cart"></a>
+        <div id="login-btn" class="fas fa-user"></div>
       </div>
+    </div>
       <!--       navbar starts here-->
       <div class="header-2">
         <nav class="navbar">
@@ -75,7 +75,8 @@
           name=""
           class="box"
           placeholder="enter your email"
-          id=""
+          id="login-email"
+          required
         />
         <span>password</span>
         <input
@@ -83,7 +84,8 @@
           name=""
           class="box"
           placeholder="enter your password"
-          id=""
+          id="login-password"
+          required
         />
         <div class="checkbox">
           <input type="checkbox" name="" id="remember-me" />
@@ -91,9 +93,47 @@
         </div>
         <input type="submit" value="sign in" class="btn" />
         <p>forget password? <a href="#" class="">click here</a></p>
-        <p>don't have an account? <a href="#">create one</a></p>
+        <p>don't have an account? <a id="sign-up-btn" href="#">create one</a></p>
       </form>
     </div>
+
+    <!-- sign up form -->
+    <div class="sign-up-form-container">
+      <div id="close-sign-up-btn" class="fas fa-times"></div>
+      <form action="">
+        <h3>Sign up</h3>
+        <span>Username</span>
+        <input
+                type="email"
+                name=""
+                required
+                class="box"
+                placeholder="enter your email"
+                id="sign-up-email"
+        />
+        <span>password</span>
+        <input
+                type="password"
+                name=""
+                required minlength="6"
+                class="box"
+                placeholder="enter your password"
+                id="sign-up-password"
+        />
+        <span>Confirm password</span>
+        <input
+                type="password"
+                name=""
+                class="box"
+                placeholder="confirm your password"
+                id="sign-up-confirm-password"
+                data-equal-id="sign-up-password"
+        />
+        <input type="submit" value="sign up" class="btn" />
+        <p>Already have an account? <a id="sign-up-to-login-btn" href="#">Sign in</a></p>
+      </form>
+    </div>
+
 
     <!-- home section starts -->
 
@@ -112,22 +152,22 @@
         <div class="swiper books-slider">
           <div class="swiper-wrapper">
             <a href="#" class="swiper-slide"
-              ><img src="./images/book-1.png" alt="book 2"
+            ><img src="./images/book-1.png" alt="book 2"
             /></a>
             <a href="#" class="swiper-slide"
-              ><img src="./images/book-2.png" alt="book 1"
+            ><img src="./images/book-2.png" alt="book 1"
             /></a>
             <a href="#" class="swiper-slide"
-              ><img src="./images/book-3.png" alt="book 3"
+            ><img src="./images/book-3.png" alt="book 3"
             /></a>
             <a href="#" class="swiper-slide"
-              ><img src="./images/book-4.png" alt="book 4"
+            ><img src="./images/book-4.png" alt="book 4"
             /></a>
             <a href="#" class="swiper-slide"
-              ><img src="./images/book-5.png" alt="book 5"
+            ><img src="./images/book-5.png" alt="book 5"
             /></a>
             <a href="#" class="swiper-slide"
-              ><img src="./images/book-6.png" alt="book 6"
+            ><img src="./images/book-6.png" alt="book 6"
             /></a>
           </div>
           <img src="images/stand.png" class="stand" alt="picture stand" />
@@ -281,7 +321,14 @@
 
     <!-- feature section ends -->
 
-    <!--  newsletter section -->
+    <!-- 41:59/1:08 newsletter section -->
+    <section class="newsletter">
+      <form action="">
+        <h3>subscribe for latest updates</h3>
+        <input type="email" name="" placeholder="enter your email" id="" class="box">
+        <input type="submit" value="subscribe" class="btn">
+      </form>
+    </section>
 
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- js file links -->

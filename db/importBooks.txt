@@ -1,0 +1,43 @@
+import XlsxPopulate from 'xlsx-populate';
+import {MongoClient} from 'mongodb'
+const path = "C:/Users/97589/Downloads/books_1.Best_Books_Ever.xlsx";
+const errorPath = "./images/bookCoverNotFound.png";
+const uri =
+    "mongodb+srv://admin:admin@cluster0.duh9gcc.mongodb.net/?retryWrites=true&w=majority";
+
+
+const client = new MongoClient(uri);
+const db = client.db("eCommer");
+const booksCollection = db.collection("books");
+
+
+async function processRow(row) {
+
+  const doc = {
+    title: row.cell('B')._value,
+    author: row.cell('D')._value || 'Not Known',
+    rating: row.cell('E')._value || 5,
+    description: row.cell('F')._value || "No description provided",
+    language: row.cell('G')._value || 'Not Known',
+    ISBN: row.cell('H')._value,
+    genres: row.cell('I')._value || [],
+    bookForm: row.cell('K')._value || 'Not Known',
+    pages: row.cell('M')._value || 'Not Known',
+    publisher: row.cell('N')._value || 'Not Known',
+    image: row.cell('V')._value || errorPath,
+    price: row.cell('Y')._value || Math.random() * 35 + 5
+  };
+  await booksCollection.insertOne(doc);
+}
+async function readExcel() {
+  try {
+    const workbook = await XlsxPopulate.fromFileAsync(path);
+    const sheet = workbook.sheet('books_1.Best_Books_Ever');
+    sheet.forEachExistingRow(processRow);
+    // Read a specific cell
+  } catch (error) {
+    console.error('Error reading Excel file:', error);
+  }
+}
+
+await readExcel();
