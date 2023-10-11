@@ -7,6 +7,7 @@ const MyDB = () => {
   const myDB = {};
 
   const connect = () => {
+    console.log("URI is "+uri);
     const client = new MongoClient(uri);
     const db = client.db("eCommer");
     return { client, db };
