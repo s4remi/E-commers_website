@@ -1,3 +1,4 @@
+import { query } from "express";
 import { MongoClient } from "mongodb";
 
 const MyDB = () => {
@@ -25,6 +26,19 @@ const MyDB = () => {
     const userCollection = db.collection("users");
     try {
       return userCollection.insertOne(doc);
+    } catch (e) {
+      await client.close();
+    }
+  };
+
+  myDB.getSearch = async (query = {}) => {
+    const { client, db } = connect();
+    const bookCollection = db.collection("books");
+    console.log(query);
+    //find the query in the dataset
+    //db.collection.find( { qty: { $gt: 4 } } )
+    try {
+      return bookCollection.findOne(query);
     } catch (e) {
       await client.close();
     }
