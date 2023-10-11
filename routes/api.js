@@ -5,6 +5,25 @@ import bcrypt from "bcrypt";
 import bodyParser from "body-parser";
 export const router = express.Router();
 
+router.post("/search", bodyParser.json(), async (req, res) => {
+  const { bookTitle } = req.body;
+  myDB
+    .getSearch({ title: bookTitle })
+    .then((existingUser) => {
+      if (foundBook) {
+        // Book with the given title was found
+        res.status(200).json({ message: "Book found", book: foundBook });
+      } else {
+        // Book with the given title was not found
+        res.status(404).json({ message: "Book not found" });
+      }
+    })
+    .catch((error) => {
+      // Handle any database error
+      res.status(500).json({ message: "Internal server error" });
+    });
+});
+
 router.post("/users/login", bodyParser.json(), async (req, res) => {
   const { email, password } = req.body;
   myDB.getUser({ email: email }).then((existingUser) => {

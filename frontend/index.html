@@ -26,7 +26,7 @@
     <header class="header">
       <div class="header-1">
         <a href="#" class="logo"><i class="fas fa-book"></i> Ali&Zhehao</a>
-        <form class="search-form" onsubmit="myFunction()">
+        <form class="search-form" onsubmit="search()">
           <!-- input:search#search-box -->
           <input
             type="search"
@@ -35,7 +35,11 @@
             id="search-box"
           />
 
-          <label for="search-box" class="fas fa-search"></label>
+          <button
+            id="test-label"
+            for="search-box"
+            class="fas fa-search"
+          ></button>
         </form>
         <div class="icons">
           <div id="search-btn" class="fas fa-search"></div>
@@ -348,5 +352,6 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- js file links -->
     <script src="./js/script.js"></script>
+    <script src="./js/search.js"></script>
   </body>
 </html>
