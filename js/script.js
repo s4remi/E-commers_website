@@ -3,8 +3,6 @@ document.querySelector("#search-btn").onclick = () => {
   searchForm.classList.toggle("active");
 };
 
-
-
 //login section
 const loginForm = document.querySelector(".login-form-container");
 loginForm.addEventListener("submit", async (event) => {
@@ -21,10 +19,12 @@ loginForm.addEventListener("submit", async (event) => {
         email: email,
         password: password,
       }),
-    }).then(response => response.json())
-      .then(data => {
+    })
+      .then((response) => response.json())
+      .then((data) => {
         alert(data.message);
-      }).catch(error=>{
+      })
+      .catch((error) => {
         alert(error);
       });
   } catch (error) {
@@ -59,7 +59,7 @@ const confirmPasswordInput = document.getElementById(
   "sign-up-confirm-password",
 );
 
-confirmPasswordInput.addEventListener("input", ()=>{
+confirmPasswordInput.addEventListener("input", () => {
   confirmPasswordInput.setCustomValidity("");
 });
 
@@ -69,7 +69,6 @@ signUpFrom.addEventListener("submit", async (event) => {
   const password = document.getElementById("sign-up-password").value;
 
   const confirmPassword = confirmPasswordInput.value;
-
 
   if (password !== confirmPassword) {
     // Handle password mismatch error
@@ -89,8 +88,9 @@ signUpFrom.addEventListener("submit", async (event) => {
         email: email,
         password: password,
       }),
-    }).then(response => response.json())
-      .then(data => {
+    })
+      .then((response) => response.json())
+      .then((data) => {
         alert(data.message);
       });
   } catch (error) {
