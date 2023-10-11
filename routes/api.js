@@ -7,6 +7,9 @@ router.post("/users/login", async (req, res) => {
 
   const { email, password } = req.body;
   myDB.getUser({ email: email }).then((existingUser) => {
+    if(!existingUser){
+      return res.status(401).json({ message: "Wrong email or password" });
+    }
     bcrypt.compare(password, existingUser.password, (err, result) => {
       if (err) {
         return res.status(500).json({ message: "Internal server error" });
