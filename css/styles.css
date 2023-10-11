@@ -520,7 +520,7 @@ body {
 
 .newsletter{
   background-size: cover;
-  background: url("../images/newsletter-bg.png") no-repeat fixed center;
+  background: url("../images/newsletter-bg.jpg") no-repeat center;
 }
 
 .newsletter form{
