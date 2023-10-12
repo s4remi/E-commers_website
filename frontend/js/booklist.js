@@ -6,6 +6,48 @@ function Booklist() {
     const wrapper = document.createElement("div");
     wrapper.innerHTML = `<div class="alert alert-${type} alert-dismissible" role="alert">
     <div>${message}</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>`;
+
+    messagesDiv.append(wrapper);
+  };
+
+  me.reloadPrompts = async function () {
+    const res = await fetch("/search");
+    if (!res.ok) {
+      me.showMessage("Error loading prompts");
+      return;
+    }
+    const prompts = await res.json();
+    me.renderPrompt(prompts);
+  };
+
+  me.renderPrompt = function (prompts) {
+    const promptDiv = document.querySelector("#prompts");
+    promptDiv.innerHTML = prompts.map(renderPrompt).join("\n");
+  };
+
+  return me;
+}
+
+const renderPrompt = function (prompt) {
+  return `<div>
+    <label>Prompt ID: ${prompt.id}</label>
+    <label>Prompt Rating: ${prompt.rating}</label>
+    </div>`;
+};
+
+const booklist = Booklist();
+booklist.reloadPrompts();
+
+/*function Booklist() {
+  const me = {};
+
+  me.showMessage = function (message) {
+    const messagesDiv = document.querySelector("#messages");
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = `<div class="alert alert-${type} alert-dismissible" role="alert">
+    <div>${message}</div>
     <button type=" button" class="btn-close" data-bs-dismiss="alert" aria-lable="Close"></button>
     </div>`;
 
@@ -18,9 +60,10 @@ function Booklist() {
       me.showMessage("Error loading prompts");
       return;
     }
-    const prompts = await res.json().then(() => {
-      me.renderPrompt(prompts);
-    });
+    const prompts = await res.json();
+    //.then(() => {
+    me.renderPrompt(prompts);
+    // });
   };
 
   const renderPrompts = function (prompt) {
@@ -38,8 +81,8 @@ function Booklist() {
   return me;
 }
 const booklist = Booklist();
-booklist.renderPrompt();
-
+booklist.reloadPrompts();
+*/
 /*
 
 function MainModule(bookID = "#book-section") {
