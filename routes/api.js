@@ -1,9 +1,53 @@
-import express from "express";
+import express, { query } from "express";
 
 import { myDB } from "../db/MyDB.js";
 import bcrypt from "bcrypt";
+import bodyParser from "body-parser";
 export const router = express.Router();
 router.post("/users/login", async (req, res) => {
+
+router.get("/search", async (req, res) => {
+  const booksres = await myDB.getSearch();
+  //console.log(booksres);
+  res.send(booksres);
+});
+
+router.post("/searchByIsbn", bodyParser.json(), async (req, res) => {
+  const isbn = req.body.isbn;
+  const query = { ISBN: parseInt(isbn, 10) };
+  console.log(query);
+
+  const bookInfo = await myDB.getBookByISBN({ query });
+  console.log("inside of the searchByIsbn");
+  console.log(bookInfo);
+  //check
+  if (bookInfo) {
+    return res
+      .status(200)
+      .json({ data: bookInfo, message: "Successfully found" });
+  } else {
+    return res.status(401).json({ message: "Didn't find anything" });
+  }
+});
+/*
+  // try {
+  //   const query = {};
+  //   const books = await myDB.getSearch(query);
+
+  //   if (books) {
+  //     console.log("meeeeeeee!!!");
+  //     const first40Books = books.slice(0, 40);
+  //     res.status(200).json(first40Books);
+  //   } else {
+  //     res.status(404).json({ message: "No books found" });
+  //   }
+  // } catch (error) {
+  //   console.error(error);
+  //   res.status(500).json({ message: "Internal server error" });
+  // }
+*/
+
+router.post("/users/login", bodyParser.json(), async (req, res) => {
   const { email, password } = req.body;
   myDB.getUser({ email: email }).then((existingUser) => {
     if (!existingUser) {

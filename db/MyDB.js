@@ -44,16 +44,32 @@ const MyDB = () => {
 
   }
 
-  myDB.getSearch = async (query = {}) => {
+  myDB.getSearch = async ({ query = {}, MaxElements = 20 } = {}) => {
     const { client, db } = connect();
     const bookCollection = db.collection("books");
-    console.log(query);
+    //console.log("getSearch function", query);
     //find the query in the dataset
     //db.collection.find( { qty: { $gt: 4 } } )
     try {
-      return bookCollection.findOne(query);
-    } catch (e) {
-      await client.close();
+      return await bookCollection.find(query).limit(MaxElements).toArray();
+    } finally {
+      console.log("db closing connection");
+      client.close();
+    }
+  };
+
+  //filter the query by isbn
+
+  myDB.getBookByISBN = async ({ query = {}, MaxElements = 2 }) => {
+    const { client, db } = connect();
+    const bookCollection = db.collection("books");
+    console.log("in the mongodb object .js search for");
+    console.log(query);
+    try {
+      return await bookCollection.find(query).limit(MaxElements).toArray();
+    } finally {
+      console.log("db closing connection");
+      client.close();
     }
   };
 
