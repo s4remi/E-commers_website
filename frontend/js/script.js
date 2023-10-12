@@ -20,15 +20,21 @@ featuredBooks.addEventListener("click", async (event) => {
         },
         body: JSON.stringify({ isbn: isbn }),
       });
+      console.log(
+        "from script.js sent fetch should see  you clicked and response is ok"
+      );
 
       if (response.ok) {
         const data = await response.json();
-        // Display the book information, for example, using an alert
-        alert(data.message);
+
+        alert("you clicked and response is ok");
+        console.log("you clicked and response is ok");
       } else {
         alert("Failed to fetch book information.");
+        console.log("response.ok else");
       }
     } catch (error) {
+      console.log("from script.js in catch error");
       alert(error);
     }
   }

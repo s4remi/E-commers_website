@@ -48,12 +48,13 @@ const MyDB = () => {
 
   //filter the query by isbn
 
-  myDB.getBookByISBN = async ({ query = {} }) => {
+  myDB.getBookByISBN = async ({ query = {}, MaxElements = 2 }) => {
     const { client, db } = connect();
     const bookCollection = db.collection("books");
     console.log("in the mongodb object .js search for");
+    console.log(query);
     try {
-      return await bookCollection.find(query).toArray();
+      return await bookCollection.find(query).limit(MaxElements).toArray();
     } finally {
       console.log("db closing connection");
       client.close();
