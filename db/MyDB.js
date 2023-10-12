@@ -1,9 +1,10 @@
-import { query } from "express";
 import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+import {query} from "express";
+dotenv.config();
 
 const MyDB = () => {
-  const uri =
-    "mongodb+srv://admin:admin@cluster0.duh9gcc.mongodb.net/?retryWrites=true&w=majority";
+  const uri = process.env.MONGO_URL;
   const myDB = {};
 
   const connect = () => {
@@ -31,6 +32,17 @@ const MyDB = () => {
       await client.close();
     }
   };
+
+  myDB.getBookByISBN = async ( query = {} ) => {
+    const { client, db } = connect();
+    const bookCollection = db.collection("books");
+    try {
+      return bookCollection.findOne(query);
+    } catch (e) {
+      await client.close();
+    }
+
+  }
 
   myDB.getSearch = async (query = {}) => {
     const { client, db } = connect();

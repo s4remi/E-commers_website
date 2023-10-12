@@ -3,6 +3,12 @@ document.querySelector("#search-btn").onclick = () => {
   searchForm.classList.toggle("active");
 };
 
+document.getElementById("search-form").addEventListener("submit", (event)=> {
+  event.preventDefault();
+  const isbn = document.getElementById("search-box").value;
+  window.location.href = `../book_detail.html?isbn=${isbn}`;
+});
+
 //login section
 const loginForm = document.querySelector(".login-form-container");
 loginForm.addEventListener("submit", async (event) => {
@@ -10,7 +16,7 @@ loginForm.addEventListener("submit", async (event) => {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
   try {
-    fetch("http://localhost:3000/users/login", {
+    fetch("/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +85,7 @@ signUpFrom.addEventListener("submit", async (event) => {
   }
 
   try {
-    fetch("http://localhost:3000/users/register", {
+    fetch("/users/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
