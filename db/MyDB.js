@@ -33,7 +33,7 @@ const MyDB = () => {
     }
   };
 
-  myDB.getBookByISBN = async ( query = {} ) => {
+  myDB.getBookByISBNZhehao = async ( query = {} ) => {
     const { client, db } = connect();
     const bookCollection = db.collection("books");
     try {

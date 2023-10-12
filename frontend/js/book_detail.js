@@ -30,12 +30,7 @@ const loadBook = (bookData) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const isbn = new URLSearchParams(window.location.search).get("isbn");
-  fetch(`/books?isbn=${isbn}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  fetch(`/books?isbn=${isbn}`)
     .then((response) =>
       response.json().then((data) => {
         console.log(data);

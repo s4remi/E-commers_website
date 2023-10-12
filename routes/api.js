@@ -3,8 +3,8 @@ import express, { query } from "express";
 import { myDB } from "../db/MyDB.js";
 import bcrypt from "bcrypt";
 import bodyParser from "body-parser";
+
 export const router = express.Router();
-router.post("/users/login", async (req, res) => {
 
 router.get("/search", async (req, res) => {
   const booksres = await myDB.getSearch();
@@ -67,7 +67,7 @@ router.post("/users/login", bodyParser.json(), async (req, res) => {
 });
 router.get("/books", async (req, res) => {
   const { isbn } = req.query;
-  myDB.getBookByISBN({ ISBN: parseInt(isbn) }).then((book) => {
+  myDB.getBookByISBNZhehao({ ISBN: parseInt(isbn) }).then((book) => {
     if (!book) {
       return res.status(401).json({ message: "Couldn't find this book" });
     } else {
