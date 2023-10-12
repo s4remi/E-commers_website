@@ -4,10 +4,9 @@ import { myDB } from "../db/MyDB.js";
 import bcrypt from "bcrypt";
 export const router = express.Router();
 router.post("/users/login", async (req, res) => {
-
   const { email, password } = req.body;
   myDB.getUser({ email: email }).then((existingUser) => {
-    if(!existingUser){
+    if (!existingUser) {
       return res.status(401).json({ message: "Wrong email or password" });
     }
     bcrypt.compare(password, existingUser.password, (err, result) => {
@@ -22,7 +21,16 @@ router.post("/users/login", async (req, res) => {
     });
   });
 });
-
+router.get("/books", async (req, res) => {
+  const { isbn } = req.query;
+  myDB.getBookByISBN({ ISBN: parseInt(isbn) }).then((book) => {
+    if (!book) {
+      return res.status(401).json({ message: "Couldn't find this book" });
+    } else {
+      return res.json(book);
+    }
+  });
+});
 router.post("/users/register", async (req, res) => {
   const { email, password } = req.body;
   myDB.getUser({ email: email }).then((existingUser) => {
