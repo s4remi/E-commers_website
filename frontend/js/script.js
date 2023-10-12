@@ -2,6 +2,43 @@ const searchForm = document.querySelector(".search-form");
 document.querySelector("#search-btn").onclick = () => {
   searchForm.classList.toggle("active");
 };
+// //featured books section
+const featuredBooks = document.querySelector("#featured-books-container");
+
+featuredBooks.addEventListener("click", async (event) => {
+  event.preventDefault();
+  // Check if the click event occurred on an "a" element with the "fa-eye" class
+  if (event.target.classList.contains("fa-eye")) {
+    // Get the ISBN from the clicked element's id
+    const isbn = event.target.id;
+
+    try {
+      const response = await fetch("http://localhost:3000/searchByIsbn", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ isbn: isbn }),
+      });
+      console.log(
+        "from script.js sent fetch should see  you clicked and response is ok"
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+
+        alert("you clicked and response is ok");
+        console.log("you clicked and response is ok");
+      } else {
+        alert("Failed to fetch book information.");
+        console.log("response.ok else");
+      }
+    } catch (error) {
+      console.log("from script.js in catch error");
+      alert(error);
+    }
+  }
+});
 
 //login section
 const loginForm = document.querySelector(".login-form-container");
@@ -56,7 +93,7 @@ document.querySelector("#sign-up-to-login-btn").onclick = () => {
   loginForm.classList.add("active");
 };
 const confirmPasswordInput = document.getElementById(
-  "sign-up-confirm-password",
+  "sign-up-confirm-password"
 );
 
 confirmPasswordInput.addEventListener("input", () => {
