@@ -2,14 +2,35 @@ import express from "express";
 
 import { myDB } from "../db/MyDB.js";
 import bcrypt from "bcrypt";
+import bodyParser from "body-parser";
 export const router = express.Router();
-router.post("/users/login", async (req, res) => {
 
+router.get("/search", async (req, res) => {
+  const booksres = await myDB.getSearch();
+  console.log(booksres);
+  res.send(booksres);
+});
+/*
+  // try {
+  //   const query = {};
+  //   const books = await myDB.getSearch(query);
+
+  //   if (books) {
+  //     console.log("meeeeeeee!!!");
+  //     const first40Books = books.slice(0, 40);
+  //     res.status(200).json(first40Books);
+  //   } else {
+  //     res.status(404).json({ message: "No books found" });
+  //   }
+  // } catch (error) {
+  //   console.error(error);
+  //   res.status(500).json({ message: "Internal server error" });
+  // }
+*/
+
+router.post("/users/login", bodyParser.json(), async (req, res) => {
   const { email, password } = req.body;
   myDB.getUser({ email: email }).then((existingUser) => {
-    if(!existingUser){
-      return res.status(401).json({ message: "Wrong email or password" });
-    }
     bcrypt.compare(password, existingUser.password, (err, result) => {
       if (err) {
         return res.status(500).json({ message: "Internal server error" });
@@ -23,7 +44,7 @@ router.post("/users/login", async (req, res) => {
   });
 });
 
-router.post("/users/register", async (req, res) => {
+router.post("/users/register", bodyParser.json(), async (req, res) => {
   const { email, password } = req.body;
   myDB.getUser({ email: email }).then((existingUser) => {
     if (existingUser) {
