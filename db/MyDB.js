@@ -3,11 +3,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const MyDB = () => {
-  const uri = process.env.MONGO_url;
+  const uri = "mongodb+srv://admin:admin@cluster0.duh9gcc.mongodb.net/?retryWrites=true&w=majority";
   const myDB = {};
 
   const connect = () => {
-    console.log("URI is "+uri);
     const client = new MongoClient(uri);
     const db = client.db("eCommer");
     return { client, db };
