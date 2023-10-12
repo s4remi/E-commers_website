@@ -1,4 +1,4 @@
-import express from "express";
+import express, { query } from "express";
 
 import { myDB } from "../db/MyDB.js";
 import bcrypt from "bcrypt";
@@ -7,8 +7,16 @@ export const router = express.Router();
 
 router.get("/search", async (req, res) => {
   const booksres = await myDB.getSearch();
-  console.log(booksres);
+  //console.log(booksres);
   res.send(booksres);
+});
+
+router.post("/searchByIsbn", bodyParser.json(), async (req, res) => {
+  const isbn = req.body;
+  const bookInfo = await myDB.getBookByISBN((query = { ISBN: isbn }));
+  console.log("inside of the searchBuIsbn");
+  console.log(bookInfo);
+  res.send(bookInfo);
 });
 /*
   // try {

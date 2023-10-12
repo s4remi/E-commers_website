@@ -46,6 +46,20 @@ const MyDB = () => {
     }
   };
 
+  //filter the query by isbn
+
+  myDB.getBookByISBN = async ({ query = {} }) => {
+    const { client, db } = connect();
+    const bookCollection = db.collection("books");
+    console.log("in the mongodb object .js search for");
+    try {
+      return await bookCollection.find(query).toArray();
+    } finally {
+      console.log("db closing connection");
+      client.close();
+    }
+  };
+
   return myDB;
 };
 
