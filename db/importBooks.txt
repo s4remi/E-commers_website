@@ -2,8 +2,7 @@ import XlsxPopulate from 'xlsx-populate';
 import {MongoClient} from 'mongodb'
 const path = "C:/Users/97589/Downloads/books_1.Best_Books_Ever.xlsx";
 const errorPath = "./images/bookCoverNotFound.png";
-const uri =
-    "mongodb+srv://admin:admin@cluster0.duh9gcc.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.MONGO_url;
 
 
 const client = new MongoClient(uri);
