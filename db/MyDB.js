@@ -30,6 +30,16 @@ const MyDB = () => {
     }
   };
 
+  myDB.getBookByISBNZhehao = async (query = {}) => {
+    const { client, db } = connect();
+    const bookCollection = db.collection("books");
+    try {
+      return bookCollection.findOne(query);
+    } catch (e) {
+      await client.close();
+    }
+  };
+
   myDB.getSearch = async ({ query = {}, MaxElements = 20 } = {}) => {
     const { client, db } = connect();
     const bookCollection = db.collection("books");
