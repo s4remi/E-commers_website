@@ -1,7 +1,11 @@
 import { MongoClient } from "mongodb";
+import dotenv from "dotenv"
 
+
+const uri = process.env.MONGO_URL;
+dotenv.config();
 const MyDB = () => {
-  const uri = process.env.MONGO_URL;
+  // const uri = process.env.MONGO_URL;
   const myDB = {};
 
   const connect = () => {
@@ -14,7 +18,9 @@ const MyDB = () => {
     const { client, db } = connect();
     const userCollection = db.collection("users");
     try {
-      return userCollection.findOne(query);
+      const userName= await userCollection.findOne(query);
+      console.log(`getting the user name from the db ${userName}`);
+      return userName;
     } catch (e) {
       await client.close();
     }

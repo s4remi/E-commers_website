@@ -40,12 +40,6 @@ featuredBooks.addEventListener("click", async (event) => {
   }
 });
 
-document.getElementById("search-form").addEventListener("submit", (event)=> {
-  event.preventDefault();
-  const isbn = document.getElementById("search-box").value;
-  window.location.href = `../book_detail.html?isbn=${isbn}`;
-});
-
 //login section
 const loginForm = document.querySelector(".login-form-container");
 loginForm.addEventListener("submit", async (event) => {
