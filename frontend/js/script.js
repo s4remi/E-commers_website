@@ -2,7 +2,7 @@ const searchForm = document.querySelector(".search-form");
 document.querySelector("#search-btn").onclick = () => {
   searchForm.classList.toggle("active");
 };
-// //featured books section
+//featured books section
 const featuredBooks = document.querySelector("#featured-books-container");
 
 featuredBooks.addEventListener("click", async (event) => {
