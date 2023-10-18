@@ -1,5 +1,5 @@
 # Code Review: 
-- The code is well-organized and placed in the appropriate folders, but it might be better to remove the unused code in all the JS files like index.js, etc.
+- The code is well-organized and placed in the appropriate folders, but it might be better to remove the unused code in all the JS files like script.js/search.js, etc.
 - Need to include the LICENSE file in the repository.
 
 # E-commers_website
