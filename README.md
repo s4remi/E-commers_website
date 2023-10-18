@@ -4,7 +4,7 @@ e-commers_website with Express, Node, MongoDB, js,html,css
 
 ## Authors
 
-Ali, Zhehao
+Ali, Zhehao //add links to your personal websited, also class link
 
 ## Deploy link:
 
@@ -14,8 +14,8 @@ https://e-commerce-o08r.onrender.com
 
 This is a full-stack dynamic website project that provides various features related to books, user registration, and more. The project includes several components, such as the server-side code, HTML templates, and CSS styles.
 
-## Project Components
-
+## Project Components 
+//very good explanation of the project
 ### `MyDB.js`
 
 The `MyDB.js` file contains a JavaScript module that connects to a MongoDB database. It includes functions for user management and book searching. The following functions are included:
@@ -50,7 +50,7 @@ The `booklist.html` file is an HTML template for displaying a list of books. It 
 The `styles.css` file contains the CSS styles used in the project. It defines various styles for elements like headers, buttons, forms, icons, and more. It also uses custom properties for colors and layout.
 
 ## Usage
-
+// this part can be more detailed
 To run the project, make sure you have Node.js installed. You can start the server by running the following command:
 
 ```bash
